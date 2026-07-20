@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-4">
+    <div class="max-w-md mx-auto">
+        <h1 class="text-xl font-bold border-b border-gray-700 pb-2 mb-4">AI-Cinema TMA</h1>
+        
+        <!-- Секция плеера -->
+        <div class="aspect-video bg-black rounded-xl flex items-center justify-center mb-4 relative overflow-hidden">
+            <span class="text-gray-500">Видео-контент ИИ</span>
+            <div id="lock-screen" class="hidden absolute inset-0 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center">
+                <p class="text-sm mb-3">Оформите Premium, чтобы досмотреть</p>
+                <button onclick="buyPremium()" class="bg-indigo-600 px-4 py-2 rounded-lg text-sm">Купить Premium (500₽)</button>
+            </div>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div class="grid grid-cols-2 gap-2">
+            <button onclick="Telegram.WebApp.showAlert('Ссылка скопирована!')" class="bg-gray-800 p-3 rounded-lg text-xs">🔗 Реф-ссылка</button>
+            <button onclick="showNetwork()" class="bg-gray-800 p-3 rounded-lg text-xs">👥 Моя сеть</button>
+        </div>
+    </div>
+
+    <script>
+        const webapp = window.Telegram.WebApp;
+        webapp.ready();
+        webapp.expand();
+
+        function buyPremium() {
+            webapp.showConfirm("Подтвердить оплату 500₽?", (ok) => {
+                if (ok) webapp.showAlert("Оплата прошла! MLM бонусы распределены.");
+            });
+        }
+    </script>
+</body>
+</html>
